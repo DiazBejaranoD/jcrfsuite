@@ -9,6 +9,19 @@ such as Part-Of-Speech (POS) tagging, phrase chunking, Named-Entity Recognition 
 
 Jcrfsuite can be dropped into any Java web applications and run without problem with JVM's class loader.
 
+### EDIT - Included MacOS aarch64 support through custom build
+
+Go to misc directory and extract the contents of crfsuite-mac-aarch64-build.tar.gz
+Run `sh build.sh` and wait until it ends.
+The new native library with JNI will be generated - as libcrfsuite.dylib
+If it's not generated, it's likely that some small adjustment needs to be done to adapt to the underlying platform.
+
+Create a new directory within the loader dirs of the jcrfsuite project and place there the new lib:
+
+`resources/crfsuite-0.12/Mac/aarch64`
+
+try to run `mvn clean package` to see if the new .jar is generated. It's recommended to increase the pom.xml version.
+
 ### Maven dependency
 ```xml
 <dependency>
